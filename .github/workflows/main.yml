@@ -45,3 +45,13 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:buster
             ${{ env.IMAGE_NAME }}:latest
+
+      - name: Build and push bookworm multi-arch image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.bookworm
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:bookworm
