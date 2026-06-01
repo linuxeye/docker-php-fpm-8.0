@@ -123,7 +123,7 @@ RUN set -eux; \
 	cd /usr/src/php; \
         \
 # Apply OpenSSL 3.0 compatibility patch (backported from PHP 8.1)
-        curl -fsSL -o openssl3.patch 'https://git.rockylinux.org/staging/rpms/php/-/raw/r9/SOURCES/php-8.0.21-openssl3.patch'; \
+        curl -fsSL -o openssl3.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-8.0.21-openssl3.patch; \
         patch -p1 < openssl3.patch; \
         rm openssl3.patch; \
         \
