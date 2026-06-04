@@ -154,7 +154,6 @@ RUN set -eux; \
         curl -fsSL -o php-cve-2024-8925.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2024-8925.patch; \
         curl -fsSL -o php-cve-2024-8926.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2024-8926.patch; \
         curl -fsSL -o php-cve-2024-8927.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2024-8927.patch; \
-        curl -fsSL -o php-cve-2024-8929.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2024-8929.patch; \
         curl -fsSL -o php-cve-2024-8932.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2024-8932.patch; \
         curl -fsSL -o php-cve-2024-9026.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2024-9026.patch; \
         curl -fsSL -o php-cve-2025-1217.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2025-1217.patch; \
@@ -163,19 +162,16 @@ RUN set -eux; \
         curl -fsSL -o php-cve-2025-14178.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2025-14178.patch; \
         curl -fsSL -o php-cve-2025-14179.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2025-14179.patch; \
         curl -fsSL -o php-cve-2025-1734.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2025-1734.patch; \
-        curl -fsSL -o php-cve-2025-1735.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2025-1735.patch; \
         curl -fsSL -o php-cve-2025-1736.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2025-1736.patch; \
         curl -fsSL -o php-cve-2025-1861.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2025-1861.patch; \
         curl -fsSL -o php-cve-2025-6491.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2025-6491.patch; \
         curl -fsSL -o php-cve-2026-6722.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2026-6722.patch; \
         curl -fsSL -o php-cve-2026-6735.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2026-6735.patch; \
-        curl -fsSL -o php-cve-2026-7258.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2026-7258.patch; \
         curl -fsSL -o php-cve-2026-7259.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2026-7259.patch; \
         curl -fsSL -o php-cve-2026-7261.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2026-7261.patch; \
         curl -fsSL -o php-cve-2026-7262.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2026-7262.patch; \
         curl -fsSL -o php-cve-2026-7568.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-cve-2026-7568.patch; \
         curl -fsSL -o php-ghsa-4w77-75f9-2c8w.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-ghsa-4w77-75f9-2c8w.patch; \
-        curl -fsSL -o php-ghsa-www2-q4fc-65wf.patch https://git.remirepo.net/cgit/rpms/scl-php80/php.git/plain/php-ghsa-www2-q4fc-65wf.patch; \
         patch -p1 < php-7.2.0-oci8conf.patch; \
         patch -p1 < php-7.4.0-datetests.patch; \
         patch -p1 < php-7.4.0-httpd.patch; \
@@ -207,7 +203,6 @@ RUN set -eux; \
         patch -p1 < php-cve-2024-8925.patch; \
         patch -p1 < php-cve-2024-8926.patch; \
         patch -p1 < php-cve-2024-8927.patch; \
-        patch -p1 < php-cve-2024-8929.patch; \
         patch -p1 < php-cve-2024-8932.patch; \
         patch -p1 < php-cve-2024-9026.patch; \
         patch -p1 < php-cve-2025-1217.patch; \
@@ -216,19 +211,16 @@ RUN set -eux; \
         patch -p1 < php-cve-2025-14178.patch; \
         patch -p1 < php-cve-2025-14179.patch; \
         patch -p1 < php-cve-2025-1734.patch; \
-        patch -p1 < php-cve-2025-1735.patch; \
         patch -p1 < php-cve-2025-1736.patch; \
         patch -p1 < php-cve-2025-1861.patch; \
         patch -p1 < php-cve-2025-6491.patch; \
         patch -p1 < php-cve-2026-6722.patch; \
         patch -p1 < php-cve-2026-6735.patch; \
-        patch -p1 < php-cve-2026-7258.patch; \
         patch -p1 < php-cve-2026-7259.patch; \
         patch -p1 < php-cve-2026-7261.patch; \
         patch -p1 < php-cve-2026-7262.patch; \
         patch -p1 < php-cve-2026-7568.patch; \
         patch -p1 < php-ghsa-4w77-75f9-2c8w.patch; \
-        patch -p1 < php-ghsa-www2-q4fc-65wf.patch; \
         rm *.patch; \
         \
 	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
