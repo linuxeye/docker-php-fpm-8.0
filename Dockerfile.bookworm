@@ -64,11 +64,13 @@ ENV PHP_VERSION=8.0.30
 ENV PHP_URL="https://www.php.net/distributions/php-8.0.30.tar.xz" PHP_ASC_URL="https://www.php.net/distributions/php-8.0.30.tar.xz.asc"
 ENV PHP_SHA256="216ab305737a5d392107112d618a755dc5df42058226f1670e9db90e77d777d9"
 
+ADD https://raw.githubusercontent.com/mpyw/php-eol-CVE-2026-109618-109619/<commit-sha>/patches/8.0-CVE-2026-109618-109619.patch /usr/src/8.0-CVE-2026-109618-109619.patch
+
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
-	apt-get install -y --no-install-recommends gnupg; \
+	apt-get install -y --no-install-recommends gnupg patch; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 	mkdir -p /usr/src; \
@@ -80,14 +82,24 @@ RUN set -eux; \
 		echo "$PHP_SHA256 *php.tar.xz" | sha256sum -c -; \
 	fi; \
 	\
-	curl -fsSL -o php.tar.xz.asc "$PHP_ASC_URL"; \
-	export GNUPGHOME="$(mktemp -d)"; \
-	for key in $GPG_KEYS; do \
-		gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
-	done; \
-	gpg --batch --verify php.tar.xz.asc php.tar.xz; \
-	gpgconf --kill all; \
-	rm -rf "$GNUPGHOME"; \
+	if [ -n "$PHP_ASC_URL" ]; then \
+		curl -fsSL -o php.tar.xz.asc "$PHP_ASC_URL"; \
+		export GNUPGHOME="$(mktemp -d)"; \
+		for key in $GPG_KEYS; do \
+			gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"; \
+		done; \
+		gpg --batch --verify php.tar.xz.asc php.tar.xz; \
+		gpgconf --kill all; \
+		rm -rf "$GNUPGHOME"; \
+	fi; \
+	\
+# apply the CVE-2026-109618-109619 fix and repack, so "docker-php-source extract" yields patched sources
+	mkdir php-patched; \
+	tar -xJf php.tar.xz -C php-patched --strip-components=1; \
+	patch -d php-patched -p1 --forward --batch < php-CVE-2026-109618-109619.patch; \
+	rm php.tar.xz php.tar.xz.asc; \
+	tar -cJf php.tar.xz php-patched; \
+	rm -rf php-patched; \
 	\
 	apt-mark auto '.*' > /dev/null; \
 	apt-mark manual $savedAptMark > /dev/null; \
