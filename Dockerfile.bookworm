@@ -64,8 +64,6 @@ ENV PHP_VERSION=8.0.30
 ENV PHP_URL="https://www.php.net/distributions/php-8.0.30.tar.xz" PHP_ASC_URL="https://www.php.net/distributions/php-8.0.30.tar.xz.asc"
 ENV PHP_SHA256="216ab305737a5d392107112d618a755dc5df42058226f1670e9db90e77d777d9"
 
-ADD https://raw.githubusercontent.com/mpyw/php-eol-CVE-2026-109618-109619/<commit-sha>/patches/8.0-CVE-2026-109618-109619.patch /usr/src/8.0-CVE-2026-109618-109619.patch
-
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
@@ -75,6 +73,8 @@ RUN set -eux; \
 	\
 	mkdir -p /usr/src; \
 	cd /usr/src; \
+	\
+	curl -fsSL -o php-CVE-2026-109618-109619.patch "https://raw.githubusercontent.com/mpyw/php-eol-CVE-2026-109618-109619/refs/heads/main/patches/8.0-CVE-2026-109618-109619.patch"; \
 	\
 	curl -fsSL -o php.tar.xz "$PHP_URL"; \
 	\
